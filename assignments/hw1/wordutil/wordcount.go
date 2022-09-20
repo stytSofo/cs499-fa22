@@ -13,4 +13,18 @@ import (
 func WordCount(s string) map[string]int {
 	// TODO: implement me
 	// HINT: You may find the `strings.Fields` and `strings.ToLower` functions helpful
+
+	var s_split = strings.Fields(s)
+
+	WordCountMap := make(map[string]int)
+
+	for i := 0; i < len(s_split); i++ {
+		s_split[i] = strings.ToLower(s_split[i])
+
+		WordCountMap[s_split[i]] = WordCountMap[s_split[i]] + 1
+
+	}
+
+	return WordCountMap
+
 }
