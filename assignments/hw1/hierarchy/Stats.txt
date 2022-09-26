@@ -1,0 +1,35 @@
+DRAM Latency:
+                Numa node
+Numa node            0       1
+       0          89.1   148.5
+       1         146.6    89.1
+
+DRAM Bandwidth:
+
+                Numa node
+Numa node            0       1
+       0        172658.3       	55592.6
+       1        55597.3 	172804.5
+
+
+Disk Latency:
+--- /mnt/ (ext4 /dev/nvme0n1) ioping statistics ---
+19 requests completed in 1.75 ms, 76 KiB read, 10.8 k iops, 42.3 MiB/s
+generated 20 requests in 19.0 s, 80 KiB, 1 iops, 4.21 KiB/s
+min/avg/max/mdev = 63.3 us / 92.3 us / 140.6 us / 24.4 us
+
+Disk Bandwidth:
+/dev/nvme0n1:
+ Timing buffered disk reads: 4388 MB in  3.00 seconds = 1462.38 MB/sec
+
+
+Network Latency:
+rtt min/avg/max/mdev = 0.133/0.165/0.296/0.055 ms
+
+
+Network Bandwidth: 10.0 Gbits/sec
+
+
+
+
+
