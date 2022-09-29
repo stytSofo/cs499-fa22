@@ -1,6 +1,6 @@
 Answer part 2 here.
 
-All the tests were made on CloudLab's r650 machines since at the time of the experiment they were the only available machines. An r650 machine has 2 Intel Xeon 8360Y CPUs, 256GB of DDR4 3200 MT/s RAM, 1.2 TB of NVMe storage and a 25Gbit ethernet NIC. 
+All the tests were made on CloudLab's r650 machines since at the time of the experiment they were the only available machines. An r650 machine has 2 Intel Xeon 8360Y CPUs, 256GB of DDR4 3200 MT/s RAM, 1.2 TB of NVMe storage and a 25Gbit ethernet NIC. All the hardware information was taken from https://docs.cloudlab.us/hardware.html
 
 <!-- An interesting observation from the specs of the r650 is that the RAM is configured to run in tripple channel configuration which in turn will result in higher memory bandwitdth as we will see later.  -->
 
