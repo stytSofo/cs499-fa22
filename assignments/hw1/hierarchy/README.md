@@ -11,4 +11,5 @@ Accessing the local node's disk reveals latency of 0.092ms. This is an impressiv
 
 Finally, capacity is pretty much the same across the local and remote nodes since they are the exact same hardware. Both machines are fitted with 256GB of DDR4 3200MT/s ram (16 dimms 16GB each). Each CPU has a NUMA node with 128GB in an eight-channel configuration thus offering 170GB/s sequential read/write speeds. As mentioned before, the storage drives in these systems are NVMe SSDs 1.2 TB each. An interesting note is that even though these systems are configured with 25 and 100Gb/s NICs, i could not achieve these speeds in any test.
 
+![alt text](https://github.com/stytSofo/cs499-fa22/blob/main/assignments/hw1/hierarchy/Graph.png?raw=true)
 
