@@ -1,0 +1,34 @@
+2
+./wrk -t12 -c1000 -d10s --latency http://10.10.1.1:80
+Running 10s test @ http://10.10.1.1:80
+  12 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    10.04ms   56.77ms   1.06s    99.09%
+    Req/Sec    15.93k     1.77k   50.69k    94.09%
+  Latency Distribution
+     50%    5.11ms
+     75%    5.93ms
+     90%    6.97ms
+     99%   18.76ms
+  1903919 requests in 10.07s, 604.86MB read
+  Non-2xx or 3xx responses: 1889152
+Requests/sec: 189001.57
+Transfer/sec:     60.04MB
+
+
+3
+./wrk -t12 -c1000 -d10s --latency http://10.10.1.1:80
+Running 10s test @ http://10.10.1.1:80
+  12 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     4.70ms    2.50ms  38.11ms   75.21%
+    Req/Sec    16.31k     1.61k   22.19k    71.04%
+  Latency Distribution
+     50%    4.17ms
+     75%    5.91ms
+     90%    7.83ms
+     99%   13.13ms
+  1940529 requests in 10.04s, 614.40MB read
+  Non-2xx or 3xx responses: 1939995
+Requests/sec: 193200.98
+Transfer/sec:     61.17MB
