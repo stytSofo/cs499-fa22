@@ -1,0 +1,21 @@
+---
+
+- hosts: nodes
+  tasks: 
+  - name: GitClone rep on all nodes
+    git:
+       repo: https://github.com/stytSofo/cs499-fa22.git
+       dest: /users/ssofok02/git
+       clone: yes
+       update: yes
+
+  - name: Download Wrk
+    git:
+       repo: https://github.com/wg/wrk.git
+       dest: /users/ssofok02/wrk
+       clone: yes
+       update: yes
+
+  - name: Install Wrk
+    make:
+      chdir: /users/ssofok02/wrk/
