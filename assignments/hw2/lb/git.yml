@@ -2,6 +2,12 @@
 
 - hosts: nodes
   tasks: 
+  - name: Install htop
+    apt:
+      name: htop
+      update_cache: yes
+    become: yes
+
   - name: GitClone rep on all nodes
     git:
        repo: https://github.com/stytSofo/cs499-fa22.git
