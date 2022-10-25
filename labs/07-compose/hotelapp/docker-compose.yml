@@ -2,7 +2,7 @@ version: "3"
 services:
   frontend:
     build: .
-    image: hotel_app_frontend_single_node_memdb
+    image: ${REGISTRY-127.0.0.1:5000}/hotel_app_frontend_single_node_memdb
     entrypoint: frontend
     container_name: 'hotel_app_frontend'
     ports:
@@ -11,7 +11,7 @@ services:
 
   profile:
     build: .
-    image: hotel_app_profile_single_node_memdb
+    image: ${REGISTRY-127.0.0.1:5000}/hotel_app_profile_single_node_memdb
     entrypoint: profile
     container_name: 'hotel_app_profile'
     ports:
@@ -44,8 +44,7 @@ services:
     ports:
       - "8084:8084"
     restart: always
-  
-  # RPC chains for performance profiling
+# RPC chains for performance profiling
   jaeger:
       image: jaegertracing/all-in-one:latest
       container_name: 'hotel_app_jaeger'

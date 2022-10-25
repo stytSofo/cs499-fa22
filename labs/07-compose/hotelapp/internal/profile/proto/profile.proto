@@ -35,7 +35,3 @@ message Request {
     string url = 1;
     bool default = 2;
   }
-
-  service Profile {
-    rpc GetProfiles(Request) returns (Result);
-  }
