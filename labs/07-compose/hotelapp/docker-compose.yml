@@ -44,7 +44,7 @@ services:
     ports:
       - "8084:8084"
     restart: always
-
+# RPC chains for performance profiling
   jaeger:
       image: jaegertracing/all-in-one:latest
       container_name: 'hotel_app_jaeger'
