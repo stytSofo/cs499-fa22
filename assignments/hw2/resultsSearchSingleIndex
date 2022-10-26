@@ -1,0 +1,64 @@
+ops/sec 125
+average 7.31303
+50th 5.46191
+90th 14.4851
+99th 35.5168
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec 250
+average 8.65823
+50th 6.31982
+90th 17.2651
+99th 39.729
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec 333.333
+average 8.18535
+50th 6.36987
+90th 15.5918
+99th 38.7639
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec 1000
+average 6.24988
+50th 4.36206
+90th 11.687
+99th 40.3711
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec inf
+average 6.56881
+50th 4.86401
+90th 11.1699
+99th 36.5769
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec 1000
+average 12.5993
+50th 11.2771
+90th 18.365
+99th 45.7449
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec inf
+average 23.9206
+50th 24.0781
+90th 31.396
+99th 55.407
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
+ops/sec 1000
+average 45.1061
+50th 49.542
+90th 60.5049
+99th 82.198
+succeded_queries 1000
+printing hits
+end of printing hits. average number of hits is 0
