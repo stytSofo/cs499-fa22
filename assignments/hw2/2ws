@@ -1,0 +1,68 @@
+Running 10s test @ http://10.10.1.1
+  20 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.34ms    0.91ms   3.47ms   43.15%
+    Req/Sec     3.74k   132.16     4.23k    67.82%
+  Latency Distribution
+     50%    1.34ms
+     75%    2.27ms
+     90%    2.39ms
+     99%    2.57ms
+  752425 requests in 10.10s, 346.55MB read
+Requests/sec:  74494.43
+Transfer/sec:     34.31MB
+Running 10s test @ http://10.10.1.1
+  20 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.66ms    1.94ms   5.87ms   36.26%
+    Req/Sec     3.77k   154.42     4.49k    74.07%
+  Latency Distribution
+     50%    2.53ms
+     75%    4.79ms
+     90%    5.00ms
+     99%    5.23ms
+  756291 requests in 10.10s, 348.33MB read
+Requests/sec:  74882.13
+Transfer/sec:     34.49MB
+Running 10s test @ http://10.10.1.1
+  20 threads and 300 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.98ms    2.89ms  13.20ms   43.54%
+    Req/Sec     3.78k   170.53     4.84k    76.02%
+  Latency Distribution
+     50%    4.01ms
+     75%    7.04ms
+     90%    7.56ms
+     99%    8.09ms
+  757901 requests in 10.06s, 349.07MB read
+Requests/sec:  75351.66
+Transfer/sec:     34.71MB
+Running 10s test @ http://10.10.1.1
+  20 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     4.57ms    4.14ms  57.29ms   34.50%
+    Req/Sec     4.87k     1.53k   13.07k    68.13%
+  Latency Distribution
+     50%    5.43ms
+     75%    9.35ms
+     90%   10.00ms
+     99%   11.81ms
+  961474 requests in 10.05s, 396.26MB read
+  Non-2xx or 3xx responses: 323443
+Requests/sec:  95676.93
+Transfer/sec:     39.43MB
+Running 10s test @ http://10.10.1.1
+  20 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     5.05ms    4.72ms  76.73ms   54.41%
+    Req/Sec     5.30k     1.62k   18.14k    80.43%
+  Latency Distribution
+     50%    4.38ms
+     75%    8.90ms
+     90%   12.04ms
+     99%   13.95ms
+  982900 requests in 10.08s, 410.63MB read
+  Socket errors: connect 500, read 0, write 0, timeout 0
+  Non-2xx or 3xx responses: 292176
+Requests/sec:  97548.30
+Transfer/sec:     40.75MB
