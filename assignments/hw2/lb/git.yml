@@ -15,13 +15,4 @@
        clone: yes
        update: yes
 
-  - name: Download Wrk
-    git:
-       repo: https://github.com/wg/wrk.git
-       dest: /users/ssofok02/wrk
-       clone: yes
-       update: yes
-
-  - name: Install Wrk
-    make:
-      chdir: /users/ssofok02/wrk/
+       
