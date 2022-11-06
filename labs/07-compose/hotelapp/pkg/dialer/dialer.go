@@ -26,3 +26,4 @@ func Dial(address string, tracer opentracing.Tracer) (*grpc.ClientConn, error) {
 	log.Printf("Connect to %s", address)
 	return grpc.Dial(address, dialopts...)
 }
+
