@@ -2,10 +2,18 @@ package geo
 
 import (
 	"context"
+	"fmt"
+	"log"
+	"net"
+	"time"
 
+	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/hailocab/go-geoindex"
 	"github.com/opentracing/opentracing-go"
 	pb "github.com/ucy-coast/hotel-app/internal/geo/proto"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/keepalive"
+	"google.golang.org/grpc/reflection"
 )
 
 // Geo implements the geo service
@@ -36,6 +44,39 @@ func NewGeo(a string, p int, db *DatabaseSession, tr opentracing.Tracer) *Geo {
 // Run starts the server
 func (s *Geo) Run() error {
 	// TODO: Implement me
+
+	if s.port == 0 {
+		return fmt.Errorf("server port must be set")
+	}
+
+	opts := []grpc.ServerOption{
+		grpc.KeepaliveParams(keepalive.ServerParameters{
+			Timeout: 120 * time.Second,
+		}),
+		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
+			PermitWithoutStream: true,
+		}),
+		grpc.UnaryInterceptor(
+			otgrpc.OpenTracingServerInterceptor(s.tracer),
+		),
+	}
+
+	//Created a new grpc server with the options (opts) passed into it. Note that this server does not have
+	//a service registered to it (in this case the Geo service)
+	srv := grpc.NewServer(opts...)
+	//Registering the service s-> Geo service to the srv server
+	pb.RegisterGeoServer(srv, s)
+	reflection.Register(srv)
+
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", s.port))
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+
+	// Accept and serve incoming client requests
+	log.Printf("Start Geo server. Addr: %s:%d\n", s.addr, s.port)
+	return srv.Serve(lis)
+
 }
 
 // Nearby returns all hotels within a given distance.

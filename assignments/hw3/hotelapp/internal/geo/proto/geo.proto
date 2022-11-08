@@ -14,5 +14,5 @@ message Result {
   }
 
 service Geo{
-    rpc getNearbyPoints (Request) returns (Result);
+    rpc Nearby (Request) returns (Result);
 }
