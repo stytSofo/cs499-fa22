@@ -43,7 +43,7 @@ func NewGeo(a string, p int, db *DatabaseSession, tr opentracing.Tracer) *Geo {
 
 // Run starts the server
 func (s *Geo) Run() error {
-	// TODO: Implement me
+	// TODO:DONE Implement me
 
 	if s.port == 0 {
 		return fmt.Errorf("server port must be set")
@@ -81,9 +81,23 @@ func (s *Geo) Run() error {
 
 // Nearby returns all hotels within a given distance.
 func (s *Geo) Nearby(ctx context.Context, req *pb.Request) (*pb.Result, error) {
-	// TODO: Implement me
+	// TODO:DONE Implement me
 	// HINT: Reuse the implementation from the monolithic implementation
 	// HINT: and modify as needed.
+
+	//Apparently you can create a tuple variable :))
+
+	var (
+		points = s.getNearbyPoints(float64(req.Lat), float64(req.Lon))
+		res    = &pb.Result{}
+	)
+
+	//Foreach point, add it to the array Hotels representing the nearby hotels
+	for _, p := range points {
+		res.Hotels = append(res.Hotels, p.Id())
+	}
+
+	return res, nil
 }
 
 func (s *Geo) getNearbyPoints(lat, lon float64) []geoindex.Point {
