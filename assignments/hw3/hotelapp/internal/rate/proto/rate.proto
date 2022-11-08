@@ -2,4 +2,34 @@ syntax = "proto3";
 
 package rate;
 
-// TODO: Implement me
+// TODO:DONE Implement me
+
+message RatePlan{
+    string HotelId = 1;
+    string Code = 2;
+    string InDate = 3;
+    string OutDate = 4;
+    RoomType RoomType = 5;
+}
+
+message RoomType{
+    float BookableRate = 1;
+    string Code = 2;
+    string RoomDescription = 3;
+    float TotalRate = 4;
+    float TotalRateInclusive = 5;
+}
+
+message Request  {
+    repeated string HotelIds = 1;
+    string InDate = 2;
+    string OutDate = 3;
+}
+
+message Result  {
+    repeated RatePlan RatePlan = 1;
+}
+
+service Rate{
+    rpc GetRates (Request) returns (Result);
+}
