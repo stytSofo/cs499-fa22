@@ -2,18 +2,10 @@ package geo
 
 import (
 	"context"
-	"fmt"
-	"log"
-	"net"
-	"time"
 
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/hailocab/go-geoindex"
 	"github.com/opentracing/opentracing-go"
 	pb "github.com/ucy-coast/hotel-app/internal/geo/proto"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/keepalive"
-	"google.golang.org/grpc/reflection"
 )
 
 // Geo implements the geo service
@@ -49,7 +41,7 @@ func (s *Geo) Run() error {
 // Nearby returns all hotels within a given distance.
 func (s *Geo) Nearby(ctx context.Context, req *pb.Request) (*pb.Result, error) {
 	// TODO: Implement me
-	// HINT: Reuse the implementation from the monolithic implementation 
+	// HINT: Reuse the implementation from the monolithic implementation
 	// HINT: and modify as needed.
 }
 

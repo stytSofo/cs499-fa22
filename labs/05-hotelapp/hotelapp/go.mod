@@ -1,6 +1,6 @@
 module github.com/ucy-coast/hotel-app
 
-go 1.19
+go 1.18
 
 require (
 	github.com/hailocab/go-geoindex v0.0.0-20160127134810-64631bfe9711

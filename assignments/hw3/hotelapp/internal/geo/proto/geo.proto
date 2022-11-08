@@ -3,3 +3,16 @@ syntax = "proto3";
 package geo;
 
 // TODO: Implement me
+
+message Request{
+    float Lat = 1;
+    float Lon = 2;
+}
+
+message Result {
+    repeated string hotels = 1;
+  }
+
+service Geo{
+    rpc getNearbyPoints (Request) returns (Result);
+}
