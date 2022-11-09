@@ -35,7 +35,7 @@ func NewProfile(a string, p int, db *DatabaseSession, tr opentracing.Tracer) *Pr
 
 // Run starts the server
 func (s *Profile) Run() error {
-	// TODO: Implement me
+	// TODO:DONE Implement me
 
 	if s.port == 0 {
 		return fmt.Errorf("server port must be set")
@@ -78,7 +78,7 @@ func (s *Profile) Run() error {
 
 // GetProfiles returns hotel profiles for requested IDs
 func (s *Profile) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, error) {
-	// TODO: Implement me
+	// TODO:DONE Implement me
 
 	var err error
 	res := new(pb.Result)
