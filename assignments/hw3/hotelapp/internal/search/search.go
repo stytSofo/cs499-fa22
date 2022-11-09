@@ -105,6 +105,10 @@ func (s *Search) initRateClient() error {
 	return nil
 }
 
+// func (s *Search) City(ctx context.Context, req *pb.CityRequest) (*pb.SearchResult, error) {
+
+// }
+
 // Nearby returns ids of nearby hotels ordered by ranking algo
 func (s *Search) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchResult, error) {
 	// TODO: Implement me
