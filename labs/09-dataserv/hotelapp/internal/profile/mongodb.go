@@ -17,6 +17,15 @@ type DatabaseSession struct {
 
 func NewDatabaseSession(db_addr string) *DatabaseSession {
 	// TODO: Implement me
+	session, err := mgo.Dial(db_addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Info("New session successfull...")
+
+	return &DatabaseSession{
+		MongoSession: session,
+	}
 }
 
 func (db *DatabaseSession) LoadDataFromJsonFile(profilesJsonPath string) {
@@ -26,4 +35,19 @@ func (db *DatabaseSession) LoadDataFromJsonFile(profilesJsonPath string) {
 // GetProfiles returns hotel profiles for requested IDs
 func (db *DatabaseSession) GetProfiles(hotelIds []string) ([]*pb.Hotel, error) {
 	// TODO: Implement me
+	session := db.MongoSession.Copy()
+	defer session.Close()
+	c := session.DB("profile-db").C("hotels")
+
+	hotels := make([]*pb.Hotel, 0)
+
+	for _, id := range hotelIds {
+		hotel_prof := new(pb.Hotel)
+		err := c.Find(bson.M{"id": id}).One(&hotel_prof)
+		if err != nil {
+			log.Fatalf("Failed get hotels data: ", err)
+		}
+		hotels = append(hotels, hotel_prof)
+	}
+	return hotels, nil
 }
