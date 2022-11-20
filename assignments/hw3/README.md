@@ -22,7 +22,7 @@ Use [Docker Compose](https://docs.docker.com/compose/) to deploy the [monolithic
 
 Evaluate the throughput and latency performance of the monolithic and microservices-based implementations when deployed on a single machine.
 
-Using jaeger, [trace the RPC call chains](https://github.com/ucy-coast/cs499-fa22/tree/main/labs/07-compose#tracing-requests) and identify any bottlenecks. 
+Using jaeger, [trace the RPC call chains](https://github.com/ucy-coast/cs499-fa22/tree/main/labs/07-compose#tracing-requests) and identify any bottlenecks.
 
 ### Multiple nodes
 
