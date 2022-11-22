@@ -7,6 +7,17 @@ services:
     ports:
       - "8080:8080"
     restart: always
+  
+  memcached-profile:
+    image: memcached
+    container_name: 'hotel_app_profile_memc'
+    restart: always
+    environment:
+      - MEMCACHED_CACHE_SIZE=128
+      - MEMCACHED_THREADS=2
+    logging:
+      options:
+        max-size: 50m
 
   profile:
     build:

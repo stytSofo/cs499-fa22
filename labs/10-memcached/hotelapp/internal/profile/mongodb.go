@@ -5,11 +5,13 @@ package profile
 import (
 	log "github.com/sirupsen/logrus"
 
+	"encoding/json"
 	"github.com/bradfitz/gomemcache/memcache"
 	pb "github.com/ucy-coast/hotel-app/internal/profile/proto"
 	"github.com/ucy-coast/hotel-app/pkg/util"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 type DatabaseSession struct {
@@ -66,6 +68,7 @@ func (db *DatabaseSession) GetProfiles(hotelIds []string) ([]*pb.Hotel, error) {
 			}
 			hotels = append(hotels, hotel_prof)
 
+			//Serialize the answer => json to binary data so that we can save it to Memcached
 			prof_json, err := json.Marshal(hotel_prof)
 			if err != nil {
 				log.Errorf("Failed to marshal hotel [id: %v] with err:", hotel_prof.Id, err)
