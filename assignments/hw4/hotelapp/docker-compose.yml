@@ -1,39 +1,39 @@
 version: "3"
 services:
   frontend:
-    image: ${REGISTRY-127.0.0.1:5000}/hotel_app_frontend_single_node_memdb
+    image: ssofok02/hotel_app_frontend_single_node_memdb
     entrypoint: frontend
-    container_name: 'hotel_app_frontend'
     ports:
       - "8080:8080"
     restart: always
 
   profile:
-    image: ${REGISTRY-127.0.0.1:5000}/hotel_app_profile_single_node_memdb
-    container_name: 'hotel_app_profile'
+    image: ssofok02/hotel_app_profile_single_node_memdb
     entrypoint: profile
     ports:
       - "8081:8081"
     restart: always
  
   search:
-    image: ${REGISTRY-127.0.0.1:5000}/hotel_app_search_single_node_memdb
+    image: ssofok02/hotel_app_search_single_node_memdb
     entrypoint: search
-    container_name: 'hotel_app_search'
     ports:
       - "8082:8082"
     restart: always
 
   geo:
-    image: ${REGISTRY-127.0.0.1:5000}/hotel_app_geo_single_node_memdb
-    container_name: 'hotel_app_geo'
+    image: ssofok02/hotel_app_geo_single_node_memdb
     entrypoint: geo
     ports:
       - "8083:8083"
     restart: always
 
   rate:
-    # TODO: Implement me
+    image: ssofok02/hotel_app_rate_single_node_memdb
+    entrypoint: rate
+    ports:
+      - "8084:8084"
+    restart: always
 
   jaeger:
     image: jaegertracing/all-in-one:latest
