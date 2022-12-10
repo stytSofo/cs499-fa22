@@ -49,8 +49,8 @@ services:
       - "6832:6832/udp"
     restart: always
 
-  mongodb-rate:
-    # TODO: Implement me
+#   mongodb-rate:
+#     # TODO: Implement me
 
-volumes:
-    # TODO: Implement me
+# volumes:
+#     # TODO: Implement me
