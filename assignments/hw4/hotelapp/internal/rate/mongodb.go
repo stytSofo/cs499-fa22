@@ -1,5 +1,4 @@
 //go:build mongodb
-
 package rate
 
 import (
@@ -15,7 +14,15 @@ type DatabaseSession struct {
 }
 
 func NewDatabaseSession(db_addr string) *DatabaseSession {
-	// TODO: Implement me
+	session, err := mgo.Dial(db_addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Info("New session successfull...")
+
+	return &DatabaseSession{
+		MongoSession: session,
+	}
 }
 
 func (db *DatabaseSession) LoadDataFromJsonFile(rateJsonPath string) {
@@ -25,4 +32,19 @@ func (db *DatabaseSession) LoadDataFromJsonFile(rateJsonPath string) {
 // GetRates gets rates for hotels for specific date range.
 func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 	// TODO: Implement me
+	session := db.MongoSession.Copy()
+	defer session.Close()
+	c := session.DB("rate-db").C("ratePlans")
+
+	ratePlans := make(RatePlans, 0)
+
+	for _, id := range hotelIds {
+		hotel_rates := new(RatePlans)
+		err := c.Find(bson.M{"id": id}).One(&hotel_rates)
+		if err != nil {
+			log.Fatalf("Failed to get hotel rates: ", err)
+		}
+		ratePlans = append(ratePlans, *hotel_rates...)
+	}
+	return ratePlans, nil
 }
