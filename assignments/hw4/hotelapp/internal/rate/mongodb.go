@@ -1,4 +1,5 @@
 //go:build mongodb
+
 package rate
 
 import (
@@ -16,6 +17,8 @@ type DatabaseSession struct {
 func NewDatabaseSession(db_addr string) *DatabaseSession {
 	session, err := mgo.Dial(db_addr)
 	if err != nil {
+		log.Fatal("Could not establish connection with MongoDB")
+		log.Fatal(db_addr)
 		log.Fatal(err)
 	}
 	log.Info("New session successfull...")
@@ -34,12 +37,12 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 	// TODO: Implement me
 	session := db.MongoSession.Copy()
 	defer session.Close()
-	c := session.DB("rate-db").C("ratePlans")
+	c := session.DB("rate-db").C("inventory")
 
 	ratePlans := make(RatePlans, 0)
-
 	for _, id := range hotelIds {
 		hotel_rates := new(RatePlans)
+		log.Info("Hotel ID ")
 		err := c.Find(bson.M{"id": id}).One(&hotel_rates)
 		if err != nil {
 			log.Fatalf("Failed to get hotel rates: ", err)

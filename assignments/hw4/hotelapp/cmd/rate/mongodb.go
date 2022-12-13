@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	database_addr = flag.String("db_addr", "mongodb-rate:27017", "Address of the data base server")
+	database_addr = flag.String("db_addr", "mongodbrate:27017", "Address of the data base server")
 )
 
 func initializeRateDatabase() *rate.DatabaseSession {

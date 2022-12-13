@@ -29,10 +29,16 @@ services:
     restart: always
 
   rate:
-    image: ssofok02/hotel_app_rate_single_node_memdb
+    build:
+      context: .
+      args:
+        - DB=mongodb
+    image: hotel_app_rate_single_node_mongodb
     entrypoint: rate
     ports:
       - "8084:8084"
+    depends_on:
+      - mongodbrate
     restart: always
 
   jaeger:
@@ -49,11 +55,14 @@ services:
       - "6832:6832/udp"
     restart: always
   
-  nginx:
-    image: nginx
-    container_name: 'hotel_app_loadbalancer'
+  mongodbrate:
+    image: mongo
+    container_name: 'hotel_app_rate_mongo'
     ports:
-      - "8581:80"
-    depends_on:
-      - frontend
+      - "27017:27017"
     restart: always
+    volumes:
+      - rate:/data/db
+
+volumes:
+  rate:  

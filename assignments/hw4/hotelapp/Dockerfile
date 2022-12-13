@@ -1,7 +1,7 @@
 FROM golang:1.18.4
 
 # set a build-time vriable 
-ARG DB=memdb
+ARG DB=mongodb
 
 # set a working directory for the app
 WORKDIR /go/src/github.com/ucy-coast/hotel-app
