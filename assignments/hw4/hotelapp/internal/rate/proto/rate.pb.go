@@ -84,11 +84,11 @@ func (m *Result) GetRatePlans() []*RatePlan {
 }
 
 type RatePlan struct {
-	HotelId  string    `protobuf:"bytes,1,opt,name=hotelId" json:"hotelId,omitempty"`
-	Code     string    `protobuf:"bytes,2,opt,name=code" json:"code,omitempty"`
-	InDate   string    `protobuf:"bytes,3,opt,name=inDate" json:"inDate,omitempty"`
-	OutDate  string    `protobuf:"bytes,4,opt,name=outDate" json:"outDate,omitempty"`
-	RoomType *RoomType `protobuf:"bytes,5,opt,name=roomType" json:"roomType,omitempty"`
+	HotelId  string    `protobuf:"bytes,1,opt,name=hotelId" bson:"hotelId,omitempty"`
+	Code     string    `protobuf:"bytes,2,opt,name=code" bson:"code,omitempty"`
+	InDate   string    `protobuf:"bytes,3,opt,name=inDate" bson:"inDate,omitempty"`
+	OutDate  string    `protobuf:"bytes,4,opt,name=outDate" bson:"outDate,omitempty"`
+	RoomType *RoomType `protobuf:"bytes,5,opt,name=roomType" bson:"roomType,omitempty"`
 }
 
 func (m *RatePlan) Reset()                    { *m = RatePlan{} }
@@ -132,12 +132,12 @@ func (m *RatePlan) GetRoomType() *RoomType {
 }
 
 type RoomType struct {
-	BookableRate       float64 `protobuf:"fixed64,1,opt,name=bookableRate" json:"bookableRate,omitempty"`
-	TotalRate          float64 `protobuf:"fixed64,2,opt,name=totalRate" json:"totalRate,omitempty"`
-	TotalRateInclusive float64 `protobuf:"fixed64,3,opt,name=totalRateInclusive" json:"totalRateInclusive,omitempty"`
-	Code               string  `protobuf:"bytes,4,opt,name=code" json:"code,omitempty"`
-	Currency           string  `protobuf:"bytes,5,opt,name=currency" json:"currency,omitempty"`
-	RoomDescription    string  `protobuf:"bytes,6,opt,name=roomDescription" json:"roomDescription,omitempty"`
+	BookableRate       float64 `protobuf:"fixed64,1,opt,name=bookableRate" bson:"bookableRate,omitempty"`
+	TotalRate          float64 `protobuf:"fixed64,2,opt,name=totalRate" bson:"totalRate,omitempty"`
+	TotalRateInclusive float64 `protobuf:"fixed64,3,opt,name=totalRateInclusive" bson:"totalRateInclusive,omitempty"`
+	Code               string  `protobuf:"bytes,4,opt,name=code" bson:"code,omitempty"`
+	Currency           string  `protobuf:"bytes,5,opt,name=currency" bson:"currency,omitempty"`
+	RoomDescription    string  `protobuf:"bytes,6,opt,name=roomDescription" bson:"roomDescription,omitempty"`
 }
 
 func (m *RoomType) Reset()                    { *m = RoomType{} }
