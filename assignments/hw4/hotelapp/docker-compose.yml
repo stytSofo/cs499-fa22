@@ -1,7 +1,7 @@
 version: "3"
 services:
   frontend:
-    image: ssofok02/hotel_app_frontend_single_node_memdb
+    image: ssofok02/hotel_app_frontend_single_node_memdb:1.1
     entrypoint: frontend
     ports:
       - "8080:8080"
@@ -11,7 +11,7 @@ services:
     image: ssofok02/hotel_app_profile_single_node_memdb
     entrypoint: profile
     ports:
-      - "8081:8081"
+      - "8081"
     restart: always
  
   search:
@@ -39,12 +39,12 @@ services:
     image: nginx
     container_name: nginx_load_balancer
     ports:
-      - "80:80"
+      - "8581:8581"
     depends_on:
       - frontend
     volumes:
-      - /tmp/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /tmp/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /tmp/nginx.conf:/etc/nginx/nginx.conf:rw
+      - /tmp/nginx.conf:/etc/nginx/conf.d/default.conf:rw
 
   # rate:
   #   build:

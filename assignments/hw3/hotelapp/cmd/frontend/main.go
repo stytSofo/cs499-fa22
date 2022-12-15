@@ -13,7 +13,7 @@ var (
 	port        = flag.Int("port", 8080, "The service port")
 	addr        = flag.String("addr", "0.0.0.0", "Address of the service")
 	jaegeraddr  = flag.String("jaeger", "jaeger:6831", "Jaeger address")
-	profileaddr = flag.String("profileaddr", "profile:8081", "Address of the profile service")
+	profileaddr = flag.String("profileaddr", "nginx:8581", "Address of the profile service")
 	searchaddr  = flag.String("searchaddr", "search:8082", "Address of the search service")
 )
 
