@@ -10,6 +10,6 @@ WORKDIR /go/src/github.com/ucy-coast/hotel-app
 COPY . .
 
 # build and install app
-RUN go mod init github.com/ucy-coast/hotel-app
-RUN go mod tidy
+# RUN go mod init github.com/ucy-coast/hotel-app
+# RUN go mod tidy
 RUN go install -tags ${DB} -ldflags="-s -w" ./cmd/...

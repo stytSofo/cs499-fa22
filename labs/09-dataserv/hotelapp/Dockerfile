@@ -9,7 +9,4 @@ WORKDIR /go/src/github.com/ucy-coast/hotel-app
 # copy all the files to the container
 COPY . .
 
-# build and install app
-RUN go mod init github.com/ucy-coast/hotel-app
-RUN go mod tidy
 RUN go install -tags ${DB} -ldflags="-s -w" ./cmd/...

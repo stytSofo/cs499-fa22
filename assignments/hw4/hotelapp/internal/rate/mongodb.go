@@ -1,10 +1,9 @@
-//go:build mongodb
-
 package rate
 
 import (
 	log "github.com/sirupsen/logrus"
 
+	rate "github.com/ucy-coast/hotel-app/internal/rate/proto"
 	"github.com/ucy-coast/hotel-app/pkg/util"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -17,9 +16,7 @@ type DatabaseSession struct {
 func NewDatabaseSession(db_addr string) *DatabaseSession {
 	session, err := mgo.Dial(db_addr)
 	if err != nil {
-		log.Fatal("Could not establish connection with MongoDB")
-		log.Fatal(db_addr)
-		log.Fatal(err)
+		log.Fatal("Could not establish connection with MongoDB at: " + db_addr)
 	}
 	log.Info("New session successfull...")
 
@@ -38,16 +35,20 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 	session := db.MongoSession.Copy()
 	defer session.Close()
 	c := session.DB("rate-db").C("inventory")
+	kokos := new(rate.RatePlan)
+	c.Find(bson.M{"hotelId": "1"}).One(kokos)
 
 	ratePlans := make(RatePlans, 0)
 	for _, id := range hotelIds {
 		hotel_rates := new(RatePlans)
-		log.Info("Hotel ID ")
-		err := c.Find(bson.M{"id": id}).One(&hotel_rates)
+		log.Info("Hotel ID: " + id)
+		err := c.Find(bson.M{"hotelId": id}).One(&hotel_rates)
 		if err != nil {
 			log.Fatalf("Failed to get hotel rates: ", err)
 		}
 		ratePlans = append(ratePlans, *hotel_rates...)
 	}
+
+	log.Info(ratePlans)
 	return ratePlans, nil
 }
