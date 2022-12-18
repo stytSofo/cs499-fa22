@@ -4,7 +4,7 @@ services:
     image: ssofok02/hotel_app_frontend_single_node_memdb:latest
     entrypoint: frontend
     ports:
-      - "8080:8080"
+      - "80:8080"
     restart: always
 
   profile:

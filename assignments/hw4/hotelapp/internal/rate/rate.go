@@ -78,6 +78,8 @@ func (s *Rate) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, error
 
 	ratePlans, err := s.dbsession.GetRates(req.HotelIds)
 	if err != nil {
+		log.Fatal("Unable to get the rates of the requested Hotels.")
+
 		return nil, err
 	}
 	finalRatePlans := make(RatePlans, 0)

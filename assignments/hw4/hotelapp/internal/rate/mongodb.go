@@ -35,18 +35,16 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 	session := db.MongoSession.Copy()
 	defer session.Close()
 	c := session.DB("rate-db").C("inventory")
-	kokos := new(rate.RatePlan)
-	c.Find(bson.M{"hotelId": "1"}).One(kokos)
 
 	ratePlans := make(RatePlans, 0)
 	for _, id := range hotelIds {
-		hotel_rates := new(RatePlans)
+		hotel_rates := new(rate.RatePlan)
 		log.Info("Hotel ID: " + id)
 		err := c.Find(bson.M{"hotelId": id}).One(&hotel_rates)
 		if err != nil {
 			log.Fatalf("Failed to get hotel rates: ", err)
 		}
-		ratePlans = append(ratePlans, *hotel_rates...)
+		ratePlans = append(ratePlans, hotel_rates)
 	}
 
 	log.Info(ratePlans)
