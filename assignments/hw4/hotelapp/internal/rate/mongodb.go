@@ -42,9 +42,11 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 		log.Info("Hotel ID: " + id)
 		err := c.Find(bson.M{"hotelId": id}).One(&hotel_rates)
 		if err != nil {
-			log.Fatalf("Failed to get hotel rates: ", err)
+			log.Info("Failed to get hotel rates: ", err)
 		}
-		ratePlans = append(ratePlans, hotel_rates)
+		if err == nil {
+			ratePlans = append(ratePlans, hotel_rates)
+		}
 	}
 
 	log.Info(ratePlans)
