@@ -48,11 +48,7 @@ services:
   #     - /tmp/nginx.conf:/etc/nginx/conf.d/default.conf:rw
 
   rate:
-    build:
-      context: .
-      args:
-        - DB=mongodb
-    image: hotel_app_rate_single_node_mongodb
+    image: ssofok02/hotel_app_rate_mongodb
     entrypoint: rate
     ports:
       - "8084:8084"
