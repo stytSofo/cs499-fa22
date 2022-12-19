@@ -66,7 +66,7 @@ func (s *Profile) Run() error {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	// Accept and serve incoming client requests 
+	// Accept and serve incoming client requests
 	log.Printf("Start Profile server. Addr: %s:%d\n", s.addr, s.port)
 	return srv.Serve(lis)
 }
@@ -76,5 +76,6 @@ func (s *Profile) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result,
 	var err error
 	res := new(pb.Result)
 	res.Hotels, err = s.dbsession.GetProfiles(req.HotelIds)
+	log.Printf("Hotels: %v", res)
 	return res, err
 }

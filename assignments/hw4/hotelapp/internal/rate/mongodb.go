@@ -57,7 +57,6 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 			if CacheErr = json.Unmarshal(item.Value, hotel_rates); CacheErr != nil {
 				log.Warn("Error while unmarshalling : ", CacheErr)
 			}
-			log.Info(hotel_rates)
 			ratePlans = append(ratePlans, hotel_rates)
 
 		} else if CacheErr == memcache.ErrCacheMiss {
@@ -78,7 +77,7 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 			}
 
 			//Fill the cache with the missing data
-			log.Info("Filling cache with the missing data at hote = ", id)
+			log.Info("Filling cache with the missing data at hotel = ", id)
 			rate_json, err := json.Marshal(hotel_rates)
 			if err != nil {
 				log.Errorf("Failed to marshal hotel [id: %v] with err:", hotel_rates.HotelId, err)
@@ -90,6 +89,9 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 				log.Warn("MMC error: ", err)
 			}
 
+		} else {
+			log.Errorf("Memcached error = %s\n", CacheErr)
+			panic(CacheErr)
 		}
 
 	}
