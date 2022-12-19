@@ -48,12 +48,14 @@ services:
   #     - /tmp/nginx.conf:/etc/nginx/conf.d/default.conf:rw
 
   rate:
-    image: ssofok02/hotel_app_rate_mongodb
+    build: .
+    image: hotel_app_rate_mongodb
     entrypoint: rate
     ports:
       - "8084:8084"
     depends_on:
       - mongodb-rate
+      - memcached-rate
     restart: always
 
   jaeger:
@@ -70,6 +72,18 @@ services:
       - "6832:6832/udp"
     restart: always
   
+  memcached-rate:
+    image: memcached
+    ports:
+      - "11211"
+    restart: always
+    environment:
+      - MEMCACHED_CACHE_SIZE=512
+      - MEMCACHED_THREADS=2
+    logging:
+      options:
+        max-size: 50m
+
   mongodb-rate:
     image: mongo:4.4.6
     container_name: hotel_app_rate_mongo
