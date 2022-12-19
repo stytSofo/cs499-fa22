@@ -1,5 +1,5 @@
 #!/bin/bash
-for conn in 100 200 300 400 500 600 700 800 900 1000
+for throughput in 1000 2000 3000 4000 5000 6000 7000 8000 9000 10000
 	do
-		./wrk -t10 -c"$conn" -d30s -R2000 -L -s ./scripts/hotel-reservation/mixed-workload_type_1.lua http://node1:8080
+		./wrk -t10 -c200 -d30s -R"$throughput" -L -s ./scripts/hotel-reservation/mixed-workload_type_1.lua http://node1:80
 	done
