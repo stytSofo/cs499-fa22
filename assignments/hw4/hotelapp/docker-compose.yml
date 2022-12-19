@@ -49,7 +49,7 @@ services:
 
   rate:
     build: .
-    image: hotel_app_rate_mongodb
+    image: hotel_app_rate_mongodb_memcached
     entrypoint: rate
     ports:
       - "8084:8084"
