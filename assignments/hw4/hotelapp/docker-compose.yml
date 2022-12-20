@@ -18,14 +18,14 @@ services:
     image: ssofok02/hotel_app_search_single_node_memdb
     entrypoint: search
     ports:
-      - "8082:8082"
+      - "8082"
     restart: always
 
   geo:
     image: ssofok02/hotel_app_geo_single_node_memdb
     entrypoint: geo
     ports:
-      - "8083:8083"
+      - "8083"
     restart: always
 
   # rate:
@@ -50,7 +50,7 @@ services:
     image: ssofok02/hotel_app_rate_mongodb_memcached
     entrypoint: rate
     ports:
-      - "8084:8084"
+      - "8084"
     depends_on:
       - mongodb-rate
       - memcached-rate
@@ -86,5 +86,5 @@ services:
     image: mongo:4.4.6
     container_name: hotel_app_rate_mongo
     ports:
-      - "27018:27017"
+      - "27017"
     restart: always
