@@ -83,8 +83,6 @@ func (s *Rate) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, error
 		return nil, err
 	}
 
-	log.Printf("RatePlans: %v", ratePlans)
-
 	finalRatePlans := make(RatePlans, 0)
 
 	start, _ := time.Parse("2006-01-02", req.InDate)

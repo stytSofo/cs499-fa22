@@ -52,7 +52,7 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 		if CacheErr == nil {
 			hotel_rates := new(rate.RatePlan)
 
-			log.Infof("Hit from cache hotelId = %v\n", id)
+			log.Infof("Hit from cache hotelId = %v", id)
 
 			if CacheErr = json.Unmarshal(item.Value, hotel_rates); CacheErr != nil {
 				log.Warn("Error while unmarshalling : ", CacheErr)
@@ -62,7 +62,7 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 		} else if CacheErr == memcache.ErrCacheMiss {
 			hotel_rates := new(rate.RatePlan)
 
-			log.Infof("Miss from cache at hotelId = %v\n", id)
+			log.Infof("Miss from cache at hotelId = %v", id)
 
 			session := db.MongoSession.Copy()
 			defer session.Close()
@@ -74,19 +74,18 @@ func (db *DatabaseSession) GetRates(hotelIds []string) (RatePlans, error) {
 			}
 			if err == nil {
 				ratePlans = append(ratePlans, hotel_rates)
-			}
+				//Fill the cache with the missing data
+				log.Info("Filling cache with the missing data at hotel = ", id)
+				rate_json, err := json.Marshal(hotel_rates)
+				if err != nil {
+					log.Errorf("Failed to marshal hotel [id: %v] with err:", hotel_rates.HotelId, err)
+				}
 
-			//Fill the cache with the missing data
-			log.Info("Filling cache with the missing data at hotel = ", id)
-			rate_json, err := json.Marshal(hotel_rates)
-			if err != nil {
-				log.Errorf("Failed to marshal hotel [id: %v] with err:", hotel_rates.HotelId, err)
-			}
-
-			memc_str := string(rate_json)
-			err = db.CacheClient.Set(&memcache.Item{Key: id, Value: []byte(memc_str)})
-			if err != nil {
-				log.Warn("MMC error: ", err)
+				memc_str := string(rate_json)
+				err = db.CacheClient.Set(&memcache.Item{Key: id, Value: []byte(memc_str)})
+				if err != nil {
+					log.Warn("MMC error: ", err)
+				}
 			}
 
 		} else {
